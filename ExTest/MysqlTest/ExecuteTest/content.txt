@@ -1,0 +1,9 @@
+|Table:Mysql Test                                                                                       |
+|Execute|drop database if exists `test`                                                                 |
+|Execute|create database `test`                                                                         |
+|Execute|use  `test`                                                                                    |
+|Execute|CREATE TABLE `test` (  `id` INT(10) NULL,  `name` VARCHAR(50) NULL,  `datetime` DATETIME NULL )|
+
+
+|Table:Mysql Test                                               |
+|Execute|!- delete from test where id < 100000 and id > 90000 -!|

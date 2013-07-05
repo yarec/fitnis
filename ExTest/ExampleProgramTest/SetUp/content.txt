@@ -1,0 +1,8 @@
+|import            |
+|com.rtest.fixtures.util|
+
+|import            |
+|com.rtest.fixtures|
+
+|import           |
+|com.rtest.product|

@@ -1,0 +1,31 @@
+|Table:Mysql Test   |
+|Execute|use  `test`|
+
+|query:Mysql Test|select 1 as a, 2 as b|
+|a               |b                    |
+|1               |2                    |
+
+|query:Mysql Test|select * from test limit 1|
+|id              |name|datetime             |
+|1               |cat |2011-11-10 14:30:00.0|
+
+|subset query:Mysql Test|select * from test        |
+|id                     |name|datetime             |
+|1                      |cat |2011-11-10 14:30:00.0|
+
+|query:Mysql Test|select * from test        |
+|id              |name|datetime             |
+|1               |cat |2011-11-10 14:30:00.0|
+|2               |tom |2011-11-10 18:30:00.0|
+|4               |gowd|2011-11-11 12:30:00.0|
+|3               |god |2011-11-11 18:30:00.0|
+
+
+|ordered query:Mysql Test|select * from test        |
+|id                      |name|datetime             |
+|1                       |cat |2011-11-10 14:30:00.0|
+|2                       |tom |2011-11-10 18:30:00.0|
+|3                       |god |2011-11-11 18:30:00.0|
+|4                       |gowd|2011-11-11 12:30:00.0|
+
+

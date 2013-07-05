@@ -1,0 +1,33 @@
+|Table:html test                                                    |
+|Enable JS  |false                                                  |
+|Set Url    |http://www.baidu.com?aa=$a&b=$b|html                   |
+|Show Page  |src                                                    |
+|Has Attr   |kw                                                     |
+|Text       |kw                             |fitnesse               |
+|Click      |su                                                     |
+|Show Page  |src                                                    |
+|Has Title  |百度搜索_fitnesse                                          |
+|Has Text   |fitnesse                                               |
+|Has Text   |<\w+\s                                                 |
+|Has Text   |fitnesse                       |visible                |
+|Has Text   |<\w+\s                         |source                 |
+|Has Text   |<html>                                                 |
+|Has Header |Content-Type                   |text/html;charset=utf-8|
+|Show Header|src                                                    |
+|Close Win                                                          |
+|Print      |hello                                                  |
+
+
+|Comment    |html test command                                                     |
+|Enable JS  |<!style_code[true/false]>                                             |
+|Set Url    |<!style_code[url]>        |(!style_code[html/text]                  ) |
+|Show Page  |(!style_code[src])                                                    |
+|Has Title  |<!style_code[ck_value]>                                               |
+|Has Attr   |<!style_code[id]>         |<!style_code[attr]>|<!style_code[ck_value]>|
+|Has Text   |<!style_code[ck_value]>   |(!style_code[src/text])                    |
+|Show Header|(!style_code[src)                                                     |
+|Has Header |<!style_code[header_name]>|<!style_code[header_value]>                |
+|Text       |<!style_code[id]>         |<!style_code[set_value]>                   |
+|Click      |<!style_code[id]>                                                     |
+|Close Win                                                                         |
+|Print      |<!style_code[str_to_print]>                                           |

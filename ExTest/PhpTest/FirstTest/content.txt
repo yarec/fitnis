@@ -1,0 +1,24 @@
+!*> [!-MyFixture.php-!]
+{{{
+<?php
+class MyFixture
+{
+    private $_myValue;
+
+    public function setMyValue($value)
+    {
+        $this->_myValue = (int) $value;
+    }
+
+    public function valueSuccessor()
+    {
+        return $this->_myValue + 1;
+    }
+}
+}}}
+*!
+!|my fixture              |
+|my value|value successor?|
+|5       |6               |
+|-4      |-3              |
+|2       |3               |

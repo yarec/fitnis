@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="fitnis" default="all">
+  
+  
+  <property file="fitnis.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.ftl"/>
+  </patternset>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.lib.classpath">
+    <fileset dir="${fitnis.home}/lib/htmlunit">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${fitnis.home}/lib/misc">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${fitnis.home}/lib/querylib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${fitnis.home}/lib/fitnesse.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module fitnis -->
+  
+  <dirname property="module.fitnis.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.fitnis" value="${compiler.args}"/>
+  
+  <property name="fitnis.output.dir" value="${module.fitnis.basedir}/out/production/fitnis"/>
+  <property name="fitnis.testoutput.dir" value="${module.fitnis.basedir}/out/test/fitnis"/>
+  
+  <path id="fitnis.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="fitnis.module.production.classpath">
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${idea.home}/lib/junit-4.10.jar"/>
+  </path>
+  
+  <path id="fitnis.runtime.production.module.classpath">
+    <pathelement location="${fitnis.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${idea.home}/lib/junit-4.10.jar"/>
+  </path>
+  
+  <path id="fitnis.module.classpath">
+    <pathelement location="${fitnis.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${idea.home}/lib/junit-4.10.jar"/>
+  </path>
+  
+  <path id="fitnis.runtime.module.classpath">
+    <pathelement location="${fitnis.testoutput.dir}"/>
+    <pathelement location="${fitnis.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${idea.home}/lib/junit-4.10.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.fitnis">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.fitnis">
+    <patternset refid="excluded.from.module.fitnis"/>
+  </patternset>
+  
+  <path id="fitnis.module.sourcepath">
+    <dirset dir="${module.fitnis.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="fitnis.module.test.sourcepath">
+    <dirset dir="${module.fitnis.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.fitnis" depends="compile.module.fitnis.production,compile.module.fitnis.tests" description="Compile module fitnis"/>
+  
+  <target name="compile.module.fitnis.production" description="Compile module fitnis; production classes">
+    <mkdir dir="${fitnis.output.dir}"/>
+    <javac destdir="${fitnis.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.fitnis}"/>
+      <bootclasspath refid="fitnis.module.bootclasspath"/>
+      <classpath refid="fitnis.module.production.classpath"/>
+      <src refid="fitnis.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.fitnis"/>
+    </javac>
+    
+    <copy todir="${fitnis.output.dir}">
+      <fileset dir="${module.fitnis.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.fitnis.tests" depends="compile.module.fitnis.production" description="compile module fitnis; test classes" unless="skip.tests">
+    <mkdir dir="${fitnis.testoutput.dir}"/>
+    <javac destdir="${fitnis.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.fitnis}"/>
+      <bootclasspath refid="fitnis.module.bootclasspath"/>
+      <classpath refid="fitnis.module.classpath"/>
+      <src refid="fitnis.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.fitnis"/>
+    </javac>
+    
+    <copy todir="${fitnis.testoutput.dir}">
+      <fileset dir="${module.fitnis.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.fitnis" description="cleanup module">
+    <delete dir="${fitnis.output.dir}"/>
+    <delete dir="${fitnis.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.fitnis, clean.artifact.fitnis:jar" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.fitnis" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.fitnis:jar" value="${basedir}/out/artifacts/fitnis_jar"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.fitnis.jar" value="${artifacts.temp.dir}/fitnis.jar"/>
+  </target>
+  
+  <target name="clean.artifact.fitnis:jar" description="clean fitnis:jar artifact output">
+    <delete dir="${artifact.output.fitnis:jar}"/>
+  </target>
+  
+  <target name="artifact.fitnis:jar" depends="init.artifacts, compile.module.fitnis" description="Build &apos;fitnis:jar&apos; artifact">
+    <mkdir dir="${artifact.output.fitnis:jar}"/>
+    <jar destfile="${temp.jar.path.fitnis.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${fitnis.output.dir}"/>
+    </jar>
+    <copy file="${temp.jar.path.fitnis.jar}" tofile="${artifact.output.fitnis:jar}/fitnis.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.fitnis:jar" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

@@ -1,0 +1,7 @@
+
+|Table:Mysql Test                    |
+|Insert|test|id|name|datetime        |
+|Exec  |    |1 |cat |2011-11-10 14:30|
+|Exec  |    |2 |tom |2011-11-10 18:30|
+|Exec  |    |3 |god |2011-11-11 18:30|
+|Exec  |    |4 |gowd|2011-11-11 12:30|

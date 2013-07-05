@@ -1,0 +1,5 @@
+|import                  |
+|com.rtest.fixtures.dbfit|
+
+|Table:Mysql Test                   |
+|Connect|localhost|3306||root|123456|

@@ -1,0 +1,9 @@
+.hg/
+.idea/
+ex-cat/
+out/
+~$
+.iml
+.bak$
+.old$
+.tar.gz$

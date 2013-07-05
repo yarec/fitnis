@@ -1,0 +1,10 @@
+!define day_in_7 {1319959009}
+!define day_in_30 {1319354209}
+!define hour_in_24 {1320008736}
+
+${hour_in_24}
+
+|Table:Mysql Test|
+|Execute|select 1|
+
+
