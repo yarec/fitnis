@@ -56,7 +56,7 @@ public class HtmlTest {
 
     public HtmlTest() {
         if (webClient == null)
-            webClient = new WebClient(BrowserVersion.INTERNET_EXPLORER_6);
+            webClient = new WebClient(BrowserVersion.CHROME);
     }
 
 
@@ -91,7 +91,7 @@ public class HtmlTest {
             String data = row.get(2).replaceAll("&amp;", "&");
             debug("cmd_postUrl: " + url);
 
-            webClient.setRedirectEnabled(true);
+            //webClient.setRedirectEnabled(true);
             Page page = null;
             try {
 
@@ -134,7 +134,7 @@ public class HtmlTest {
 			url = fixUrl(url);
             debug("cmd_setUrl: " + url);
 
-            webClient.setRedirectEnabled(true);
+            //webClient.setRedirectEnabled(true);
             Page page = null;
             try {
                 page = webClient.getPage(url);
@@ -302,7 +302,7 @@ public class HtmlTest {
 
     private void cmd_focus(List<String> row) {
         String text = row.get(1);
-        HtmlElement el = htmlpage.getElementById(text);
+        HtmlElement el = (HtmlElement) htmlpage.getElementById(text);
 
         if (el == null) {
             el = htmlpage.getElementByName(text);
@@ -323,7 +323,7 @@ public class HtmlTest {
         if (text == null || text.equals("")) {
             el = focusElement;
         } else {
-            el = htmlpage.getElementById(text);
+            el = (HtmlElement) htmlpage.getElementById(text);
             if (el == null) {
                 try{
                     el = htmlpage.getElementByName(text);
@@ -374,7 +374,7 @@ public class HtmlTest {
             text = row.get(1);
         } else {
             id = row.get(1);
-            HtmlElement el = htmlpage.getElementById(id);
+            HtmlElement el = (HtmlElement) htmlpage.getElementById(id);
             if (el == null) {
                 el = htmlpage.getElementByName(id);
             }
@@ -438,7 +438,7 @@ public class HtmlTest {
 
     private void cmd_enableJS(List<String> row) {
         String text = row.get(1);
-        webClient.setJavaScriptEnabled(Boolean.valueOf(text));
+        //webClient.setJavaScriptEnabled(Boolean.valueOf(text));
         no_check(row);
     }
 
