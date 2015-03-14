@@ -1,36 +1,20 @@
-!*> [Getting Started]
+!* [Getting Started]
 !-HtmlTest Conf-!
-!path /upg/j_prj/fitnis/out/production/fitnis
-!path /app/fitnis/**.jar
+!path /upg/fitnis/out/production/fitnis
+!path /upg/fitnis/**.jar
 
 !-Global Conf-!
 !define TEST_SYSTEM {slim}
 !define COLLAPSE_SETUP {true}
 !define COLLAPSE_TEARDOWN {true} 
 
-|Comment   |deps                                                             |
-|!c jars   |dep by               |url                                        |
-|Html Test |log4j-1.2.14.jar     |http://logging.apache.org/log4j/           |
-|          |htmlunit-2.9         |http://htmlunit.sourceforge.net/           |
-|Mysql Test|mysql-connector-5.0.7|http://www.mysql.com/downloads/connector/j/|
+|Comment   |deps                                                                   |
+|!c jars   |dep by               |url                                              |
+|Html Test |log4j-1.2.14.jar     |http://logging.apache.org/log4j/                 |
+|          |htmlunit-2.9         |http://sourceforge.net/projects/htmlunit/        |
+|          |Jakarta ORO          |http://attic.apache.org/projects/jakarta-oro.html|
+|Mysql Test|mysql-connector-5.0.7|http://www.mysql.com/downloads/connector/j/      |
 
-/rt/app/fitnis/
-|+FitNesseRoot/
-|~lib/
-| |+htmlunit/
-| |~misc/
-| | |-jakarta-oro.jar*
-| | |-log4j-1.2.14.jar*
-| | `-mysql-connector-java-5.0.7-bin.jar*
-| |~querylib/
-| | |-QueryResultBuilder.jar*
-| | `-ReflectionUtil.jar*
-| |-fitnesse.jar*
-| `-fitnis.jar
-|+logs/
-|-fitnis*
-|-fitnis-wiki.tar.gz
-`-makefile*
-
+TODO: use ivy for deps libs
 *!
 !contents -R2 -g -p -f -h

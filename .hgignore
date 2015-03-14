@@ -1,0 +1,15 @@
+syntax: glob
+
+.idea/**
+out/**
+build/**
+eleeye/**
+***~
+.git
+.hg
+FitNesseRoot/
+ExTest/**.zip
+lib/
+logs
+.DS_Store
+fitnis.iml

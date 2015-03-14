@@ -59,16 +59,9 @@
   <!-- Project Libraries -->
   
   <path id="library.lib.classpath">
-    <fileset dir="${fitnis.home}/lib/htmlunit">
-      <patternset refid="library.patterns"/>
+    <fileset dir="${fitnis.home}/lib">
+        <include name="**/*.jar"/>
     </fileset>
-    <fileset dir="${fitnis.home}/lib/misc">
-      <patternset refid="library.patterns"/>
-    </fileset>
-    <fileset dir="${fitnis.home}/lib/querylib">
-      <patternset refid="library.patterns"/>
-    </fileset>
-    <pathelement location="${fitnis.home}/lib/fitnesse.jar"/>
   </path>
   
   
@@ -142,7 +135,7 @@
   
   <target name="compile.module.fitnis.production" description="Compile module fitnis; production classes">
     <mkdir dir="${fitnis.output.dir}"/>
-    <javac destdir="${fitnis.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+    <javac destdir="${fitnis.output.dir}" includeantruntime="false" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
       <compilerarg line="${compiler.args.fitnis}"/>
       <bootclasspath refid="fitnis.module.bootclasspath"/>
       <classpath refid="fitnis.module.production.classpath"/>
@@ -160,7 +153,7 @@
   
   <target name="compile.module.fitnis.tests" depends="compile.module.fitnis.production" description="compile module fitnis; test classes" unless="skip.tests">
     <mkdir dir="${fitnis.testoutput.dir}"/>
-    <javac destdir="${fitnis.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+    <javac destdir="${fitnis.testoutput.dir}" includeantruntime="false" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
       <compilerarg line="${compiler.args.fitnis}"/>
       <bootclasspath refid="fitnis.module.bootclasspath"/>
       <classpath refid="fitnis.module.classpath"/>
@@ -196,7 +189,7 @@
     <property name="temp.jar.path.fitnis.jar" value="${artifacts.temp.dir}/fitnis.jar"/>
   </target>
   
-  <target name="clean.artifact.fitnis:jar" description="clean fitnis:jar artifact output">
+  <target name="clean.artifact.fitnis:jar" depends="init.artifacts" description="clean fitnis:jar artifact output">
     <delete dir="${artifact.output.fitnis:jar}"/>
   </target>
   

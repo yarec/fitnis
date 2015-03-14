@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-import static util.ListUtility.list;
+import static com.rtest.util.ListUtility.list;
 
 import com.sun.net.httpserver.Authenticator;
 import org.apache.log4j.Logger;
@@ -57,6 +57,7 @@ public class MysqlTest {
         return ret;
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void row(List<String> row, List ret) {
         String cmdText = row.get(0);
         Method command = (Method) commands.get(cmdText);
@@ -118,7 +119,8 @@ public class MysqlTest {
 		}
 	}
 
-	public List<Object> query() {
+	@SuppressWarnings("ConstantConditions")
+    public List<Object> query() {
 
 		ResultSet rs = null;
 		try {

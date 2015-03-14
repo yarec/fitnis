@@ -8,11 +8,12 @@ import com.gargoylesoftware.htmlunit.xml.XmlPage;
 import com.rtest.util.HtmlUtil;
 import com.rtest.util.RegxpUtil;
 import com.rtest.util.ZipUtil;
+import fit.Parse;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.oro.text.regex.MalformedPatternException;
 
-import static util.ListUtility.list;
+import static com.rtest.util.ListUtility.list;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -29,7 +30,7 @@ import java.net.URL;
 public class HtmlTest {
 
     static Logger logger = Logger.getLogger(HtmlTest.class);
-    static { PropertyConfigurator.configure("/etc/fitnis/log4j.properties"); }
+    static { PropertyConfigurator.configure("/upg/fitnis/log4j.properties"); }
 
     protected static HashMap<String, Method> commands = new HashMap<String, Method>();
     int HTMLPAGE = 1;
@@ -58,6 +59,7 @@ public class HtmlTest {
             webClient = new WebClient(BrowserVersion.INTERNET_EXPLORER_6);
     }
 
+
     public List doTable(List<List<String>> table) {
         List ret = list();
         for (List list : table) {
@@ -74,6 +76,7 @@ public class HtmlTest {
         try {
             if (command == null)
                 logger.error("empty cmd: " + cmdText);
+            assert command != null;
             command.invoke(this, row);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -149,7 +152,8 @@ public class HtmlTest {
 
 	            int url_len_limit = 30;
 	            if(url.length()>url_len_limit){
-		            row.set(1, "report:  <a title='"+url+"' href='"+url+"'>"+url.substring(0, url_len_limit)+"</a>");
+                    String str_link = "report:  <a title='"+url+"' href='"+url+"'>"+url.substring(0, url_len_limit)+"</a>";
+		            row.set(1, str_link);
 	            }
 
                 if (page instanceof TextPage) {
@@ -209,6 +213,7 @@ public class HtmlTest {
         appendRow(row, 3);
 
         String ret_text = htmlpage.getTitleText();
+        System.out.println("has-title"+ret_text + "|" + text);
         int matchCount = regxp_contains(ret_text,text);
         if(matchCount>0){
             pass(row, 2, "match "+matchCount, 3);

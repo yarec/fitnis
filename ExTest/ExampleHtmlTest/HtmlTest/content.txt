@@ -1,12 +1,10 @@
 |Table:html test                                                    |
 |Enable JS  |false                                                  |
 |Set Url    |http://www.baidu.com?aa=$a&b=$b|html                   |
-|Show Page  |src                                                    |
 |Has Attr   |kw                                                     |
 |Text       |kw                             |fitnesse               |
 |Click      |su                                                     |
-|Show Page  |src                                                    |
-|Has Title  |百度搜索_fitnesse                                          |
+|Has Title  |fitnesse_百度搜索                                          |
 |Has Text   |fitnesse                                               |
 |Has Text   |<\w+\s                                                 |
 |Has Text   |fitnesse                       |visible                |
@@ -16,7 +14,6 @@
 |Show Header|src                                                    |
 |Close Win                                                          |
 |Print      |hello                                                  |
-
 
 |Comment    |html test command                                                     |
 |Enable JS  |<!style_code[true/false]>                                             |
