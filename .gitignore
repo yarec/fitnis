@@ -1,3 +1,5 @@
 .DS_Store
 .hg/
 .idea/
+lib/
+FitNesseRoot/
