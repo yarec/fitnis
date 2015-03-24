@@ -1,6 +1,6 @@
-|Date Util             |
-|today? |test?         |
-|$today=|!-2012-12-12-!|
+|Date Util                    |
+|today? |time? |test?         |
+|$today=|$time=|!-2012-12-12-!|
 
 |Date Util  |
 |day|addday?|
@@ -13,6 +13,6 @@
 |format             |day|addday?|
 |yyyy-MM-dd HH:mm:ss|-1 |$day1_=|
 
-|Date Util                      |
+|Date Util                       |
 |format             |day|addhour?|
-|yyyy-MM-dd HH:mm:ss|-1 |$day1_=|
+|yyyy-MM-dd HH:mm:ss|-1 |$day1_= |

@@ -114,13 +114,8 @@ public class HtmlTest {
 	            if(url.length()>url_len_limit){
 		            row.set(1, "report:  <a title='"+url+"' href='"+url+"'>"+url.substring(0, url_len_limit)+"</a>");
 	            }
-                row.set(2, "report: <span title='"+data+"'>postdata</span>");
-
-                WebResponse wr = page.getWebResponse();
-                htmlpage = (HtmlPage) page;
-                pagetype = HTMLPAGE;
-
-                String ret = wr.getContentAsString();
+                row.set(2, "report: <span title='" + data + "'>postdata</span>");
+                setPage(page);
             }
 
         } catch (Exception e) {
@@ -156,26 +151,7 @@ public class HtmlTest {
 		            row.set(1, str_link);
 	            }
 
-                if (page instanceof TextPage) {
-                    debug("is TextPage");
-                    textPage = (TextPage) page;
-                    pagetype = TEXTPAGE;
-                } else if (page instanceof UnexpectedPage) {
-                    debug("is UnexpectedPage");
-                    unExpectedPage = (UnexpectedPage) page;
-                    pagetype = UNEXPECTEDPAGE;
-                } else if (page instanceof JavaScriptPage) {
-                    debug("is JavaScriptPage");
-                    jsPage = (JavaScriptPage) page;
-                    pagetype = JSPAGE;
-                } else if (page instanceof XmlPage) {
-                    debug("is XmlPage");
-                    xmlPage = (XmlPage) page;
-                    pagetype = XMLPAGE;
-                } else {
-                    debug("maybe HtmlPage");
-                    htmlpage = (HtmlPage) page;
-                    pagetype = HTMLPAGE;
+                if(!setPage(page)){
                     if (row.size() >= 3 && row.get(2).equals("html")) {
                         appendRow(row, ((HtmlPage) page).asXml());
                     }
@@ -184,10 +160,35 @@ public class HtmlTest {
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean setPage(Page page) {
+        if (page instanceof TextPage) {
+            debug("is TextPage");
+            textPage = (TextPage) page;
+            pagetype = TEXTPAGE;
+        } else if (page instanceof UnexpectedPage) {
+            debug("is UnexpectedPage");
+            unExpectedPage = (UnexpectedPage) page;
+            pagetype = UNEXPECTEDPAGE;
+        } else if (page instanceof JavaScriptPage) {
+            debug("is JavaScriptPage");
+            jsPage = (JavaScriptPage) page;
+            pagetype = JSPAGE;
+        } else if (page instanceof XmlPage) {
+            debug("is XmlPage");
+            xmlPage = (XmlPage) page;
+            pagetype = XMLPAGE;
+        } else {
+            debug("maybe HtmlPage");
+            htmlpage = (HtmlPage) page;
+            pagetype = HTMLPAGE;
+            return false;
+        }
+        return true;
     }
 
     protected void cmd_clearCookies(List<String> row) {

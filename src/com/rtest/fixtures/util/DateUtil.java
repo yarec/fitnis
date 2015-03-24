@@ -44,6 +44,11 @@ public class DateUtil {
         return  formatdate(format);
     }
 
+    public long time() {
+        return System.currentTimeMillis();
+    }
+
+
     public String test(){
         return "2012-12-12";
     }

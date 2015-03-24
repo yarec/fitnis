@@ -21,7 +21,7 @@ import org.apache.log4j.PropertyConfigurator;
 public class MysqlTest {
     static Logger logger = Logger.getLogger(MysqlTest.class);
     static {
-        PropertyConfigurator.configure("/etc/fitnis/log4j.properties");
+        PropertyConfigurator.configure("/upg/fitnis/log4j.properties");
 //        logger.debug("Start of the main() in TestLog4j");
 //        logger.info("Just testing a log message with priority set to INFO");
 //        logger.warn("Just testing a log message with priority set to WARN");
