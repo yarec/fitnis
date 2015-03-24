@@ -6,4 +6,4 @@ FitNesseRoot/
 fitnis.iml
 logs/
 out/
-
+ExTest/**/*.zip
