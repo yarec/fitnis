@@ -1,5 +1,6 @@
 package com.rtest;
 
+import com.rtest.util.HtmlUtil;
 import org.xml.sax.SAXException;
 
 import java.io.File;
@@ -14,8 +15,13 @@ import javax.xml.validation.Validator;
 public class Test {
     public static void main(String[] args) {
         Test t = new Test();
-		System.out.println(1);
-		t.testReplace();
+		t.testUnicode();
+    }
+
+    public void testUnicode(){
+        String s = "请选择项目";
+        System.out.println(HtmlUtil.chinaToUnicode("选"));
+
     }
 
     public void testValidatexml() {

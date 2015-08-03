@@ -32,6 +32,8 @@ public class HtmlTest {
     static Logger logger = Logger.getLogger(HtmlTest.class);
     static { PropertyConfigurator.configure("/upg/fitnis/log4j.properties"); }
 
+    String cmdtext = "";
+
     protected static HashMap<String, Method> commands = new HashMap<String, Method>();
     int HTMLPAGE = 1;
     int JSPAGE = 2;
@@ -72,6 +74,7 @@ public class HtmlTest {
 
     public void row(List<String> row, List ret) {
         String cmdText = row.get(0);
+        cmdtext = cmdText;
         Method command = (Method) commands.get(cmdText);
         try {
             if (command == null)
@@ -225,6 +228,10 @@ public class HtmlTest {
 
     private void cmd_hasText(List<String> row) {
         String text = row.get(1);
+        String toUnicode = row.get(2);
+        if(toUnicode!=null){
+            text = HtmlUtil.chinaToUnicode(text).replaceAll("\\\\", "\\\\\\\\");
+        }
         appendRow(row);
 
         String ret_text = "";
@@ -392,9 +399,9 @@ public class HtmlTest {
 
     private void cmd_showPage(List<String> row) {
 	    String ret_text = getPageTxt(row,1);
-	    if (row.size() > 1 && row.get(1).equals("src")) {
-		    String pre = "<textarea>" + ret_text + "</textarea>";
-		    report(row, 1, pre, 2);
+	    if ("Show".equals(cmdtext) || ( row.size() > 1 && row.get(1).equals("src")) ) {
+		    String pre = "<textarea style='width:400px;height:150px;'>" + ret_text + "</textarea>";
+		    report(row, 1, pre, row.size());
 	    } else {
 		    report(row, 1, ret_text, 2);
 	    }
@@ -612,6 +619,7 @@ public class HtmlTest {
             commands.put("Text", myClass.getDeclaredMethod("cmd_text", args));
             commands.put("Click", myClass.getDeclaredMethod("cmd_click", args));
             commands.put("Show Page", myClass.getDeclaredMethod("cmd_showPage", args));
+            commands.put("Show", myClass.getDeclaredMethod("cmd_showPage", args));
             commands.put("Show Header", myClass.getDeclaredMethod("cmd_showHeader", args));
             commands.put("Enable JS", myClass.getDeclaredMethod("cmd_enableJS", args));
             commands.put("Close Win", myClass.getDeclaredMethod("cmd_closeWin", args));
