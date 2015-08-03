@@ -107,7 +107,7 @@ public class HtmlTest {
             }
 
             if (page == null) {
-                fail(row, "Page Null");
+                pass(row, "Page Null");
             } else {
                 no_check(row);
 	            int url_len_limit = 30;
@@ -600,6 +600,8 @@ public class HtmlTest {
         try {
             commands.put("Set Url", myClass.getDeclaredMethod("cmd_setUrl", args));
             commands.put("Post Url", myClass.getDeclaredMethod("cmd_postUrl", args));
+            commands.put("GET", myClass.getDeclaredMethod("cmd_setUrl", args));
+            commands.put("POST", myClass.getDeclaredMethod("cmd_postUrl", args));
             commands.put("Clear Cookies", myClass.getDeclaredMethod("cmd_clearCookies", args));
             commands.put("Save Page", myClass.getDeclaredMethod("cmd_savePage", args));
             commands.put("Has Title", myClass.getDeclaredMethod("cmd_hasTitle", args));
