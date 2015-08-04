@@ -227,9 +227,10 @@ public class HtmlTest {
     }
 
     private void cmd_hasText(List<String> row) {
+        int rowSize = row.size();
         String text = row.get(1);
-        String toUnicode = row.get(2);
-        if(toUnicode!=null){
+        String toUnicode = rowSize>2?row.get(2):"";
+        if(!toUnicode.equals("")){
             text = HtmlUtil.chinaToUnicode(text).replaceAll("\\\\", "\\\\\\\\");
         }
         appendRow(row);
@@ -240,10 +241,9 @@ public class HtmlTest {
 
 	    ret_text = getPageTxt(row,2);
 
-	    int rowSize = row.size();
         int matchCount = regxp_contains(ret_text,text);
         if(matchCount>0){
-            pass(row, 2, "match "+matchCount, rowSize);
+            pass(row, 2, "match "+matchCount, rowSize+1);
         }
         else{
             fail(row, 3, " \"" + text + "\" not found!");
