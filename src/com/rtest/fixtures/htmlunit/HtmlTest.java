@@ -99,6 +99,7 @@ public class HtmlTest {
             try {
 
                 WebRequest wreq = new WebRequest(new URL(url),  HttpMethod.POST);
+                wreq.setCharset("UTF-8");
                 wreq.setRequestBody(data);
 
                 page = webClient.getPage( wreq );
@@ -455,7 +456,7 @@ public class HtmlTest {
     }
 
     private void cmd_print(List<String> row) {
-        ignore(row, row.get(1));
+        print(row, row.get(1));
     }
 
     private void cmd_host(List<String> row) {
@@ -542,8 +543,16 @@ public class HtmlTest {
     }
 
     private void ignore(List<String> row, String msg){
+        replace(row, msg, "ignore");
+    }
+
+    private void print(List<String> row, String msg){
+        replace(row, msg, "report");
+    }
+
+    private void replace(List<String> row, String msg, String type){
         row.set(0, "");
-        row.set(1, "ignore:" + msg);
+        row.set(1, type+":" + msg);
     }
 
     private void debug(Object o){
