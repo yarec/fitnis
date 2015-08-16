@@ -89,18 +89,30 @@ public class HtmlTest {
     }
 
     protected void cmd_postUrl(List<String> row) {
+        request(row, HttpMethod.POST);
+    }
+
+    protected void cmd_putUrl(List<String> row) {
+        request(row, HttpMethod.PUT);
+    }
+
+    protected void cmd_delUrl(List<String> row) {
+        request(row, HttpMethod.DELETE);
+    }
+
+    protected void request(List<String> row, HttpMethod method){
         try {
             String url = fixUrl(row.get(1));
             String data = row.get(2).replaceAll("&amp;", "&");
-            debug("cmd_postUrl: " + url);
+            debug("cmd_requestUrl: " + url);
 
             //webClient.setRedirectEnabled(true);
             Page page = null;
             try {
-
-                WebRequest wreq = new WebRequest(new URL(url),  HttpMethod.POST);
+                WebRequest wreq = new WebRequest(new URL(url), method);
                 wreq.setCharset("UTF-8");
                 wreq.setRequestBody(data);
+                wreq.setAdditionalHeader("Content-Type","application/x-www-form-urlencoded");
 
                 page = webClient.getPage( wreq );
             } catch (FailingHttpStatusCodeException e) {
@@ -118,7 +130,7 @@ public class HtmlTest {
 	            if(url.length()>url_len_limit){
 		            row.set(1, "report:  <a title='"+url+"' href='"+url+"'>"+url.substring(0, url_len_limit)+"</a>");
 	            }
-                row.set(2, "report: <span title='" + data + "'>postdata</span>");
+                row.set(2, "report: <span title='" + data + "'>requestdata</span>");
                 setPage(page);
             }
 
@@ -618,6 +630,8 @@ public class HtmlTest {
             commands.put("Post Url", myClass.getDeclaredMethod("cmd_postUrl", args));
             commands.put("GET", myClass.getDeclaredMethod("cmd_setUrl", args));
             commands.put("POST", myClass.getDeclaredMethod("cmd_postUrl", args));
+            commands.put("PUT", myClass.getDeclaredMethod("cmd_putUrl", args));
+            commands.put("DEL", myClass.getDeclaredMethod("cmd_delUrl", args));
             commands.put("Clear Cookies", myClass.getDeclaredMethod("cmd_clearCookies", args));
             commands.put("Save Page", myClass.getDeclaredMethod("cmd_savePage", args));
             commands.put("Has Title", myClass.getDeclaredMethod("cmd_hasTitle", args));
