@@ -1,6 +1,6 @@
 !-PhpSlim Conf-!
-!define TEST_RUNNER (/upg/j_prj/fitnis/lib/phpslim.phar)
-!define COMMAND_PATTERN (php %m /upg/j_prj/fitnis/src/phpslim)
+!define TEST_RUNNER (/upg/fitnis/lib/phpslim.phar)
+!define COMMAND_PATTERN (php %m /upg/fitnis/src/phpslim)
 !define TEST_SYSTEM (slim)
 
 !contents -R2 -g -p -f -h

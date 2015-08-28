@@ -1,14 +1,12 @@
 |Table:html test                                                    |
 |Enable JS  |false                                                  |
-|Set Url    |http://www.baidu.com?aa=$a&b=$b|html                   |
-|Has Attr   |kw                                                     |
+|GET        |http://www.baidu.com?aa=$a&b=$b|html                   |
 |Text       |kw                             |fitnesse               |
 |Click      |su                                                     |
 |Has Title  |fitnesse_百度搜索                                          |
 |Has Text   |fitnesse                                               |
 |Has Text   |<\w+\s                                                 |
 |Has Text   |fitnesse                       |visible                |
-|Has Text   |<\w+\s                         |source                 |
 |Has Text   |<html>                                                 |
 |Has Header |Content-Type                   |text/html;charset=utf-8|
 |Show Header|src                                                    |

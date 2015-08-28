@@ -10,6 +10,10 @@ class MyFixture
 
     public function valueSuccessor()
     {
-        return $this->_myValue + 1;
+        if($this->_myValue<100){
+            return $this->_myValue + 1;
+        }else{
+            return $this->_myValue + 10;
+        }
     }
 }

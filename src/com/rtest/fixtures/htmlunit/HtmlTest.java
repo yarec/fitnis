@@ -413,12 +413,12 @@ public class HtmlTest {
     private void cmd_showPage(List<String> row) {
 	    String ret_text = getPageTxt(row,1);
 	    if ("Show".equals(cmdtext) || ( row.size() > 1 && row.get(1).equals("src")) ) {
-		    String pre = "<textarea style='width:400px;height:150px;'>" + ret_text + "</textarea>";
-		    report(row, 1, pre, row.size());
+		    ret_text = "<textarea style='width:400px;height:150px;'>" + ret_text + "</textarea>";
+		    report(row, 1, ret_text, row.size());
 	    } else {
-		    report(row, 1, ret_text, 2);
+		    report(row, 1, ret_text, row.size());
 	    }
-        report(row, row.get(1));
+//        report(row, row.get(1));
     }
 
     private void cmd_showHeader(List<String> row) {
