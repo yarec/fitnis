@@ -1,0 +1,11 @@
+|Table:html test                                   |
+|Enable JS|false                                   |
+|GET      |http://httpbin.org/get?a=b&c=d |html    |
+|Has Text |"a": "b"                                |
+|Has Text |"c": "d"                                |
+|POST     |http://httpbin.org/post        |a=b&c=d |
+|Has Text |"form": {\n    "a": "b",\s\n    "c": "d"|
+|PUT      |http://httpbin.org/put         |a=b&c=d |
+|Show Page|src                                     |
+|Close Win                                         |
+|Print    |hello                                   |
