@@ -1,8 +1,10 @@
 
 first: package
 
-package:
+package: fitnis.xml
 	ant -f fitnis.xml
+fitnis.xml:
+	cp build.xml fitnis.xml
 cp:
 	ant -f fitnis.xml compile.module.fitnis.production
 

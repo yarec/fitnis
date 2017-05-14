@@ -16,6 +16,8 @@ A test tool for http api testing. It base on Fitnesse and htmlunit.
  * ant
  * ./run.sh
  * open chrome with [http://127.0.0.1:8081](http://127.0.0.1:8081)
+ * add !contents -R2 to FrontPage
+ * 
 
 ### Sample Snap
 ![Captchas examples](https://raw.githubusercontent.com/yarec/fitnis/master/demo.png)
